@@ -43,6 +43,7 @@
 ![image](https://user-images.githubusercontent.com/104368430/204712113-6413d3da-17f2-468a-a545-54710509eb94.png)
 - Полуить графики:
 ![image](https://user-images.githubusercontent.com/104368430/204712945-3595cd9d-e5ec-4584-98b4-01feb7df6a76.png)
+![image](https://user-images.githubusercontent.com/104368430/204719234-52294190-0719-422e-9523-10e3360abdfb.png)
 ![image](https://user-images.githubusercontent.com/104368430/204712975-21436605-68e6-4e52-8e9f-a2bb402710da.png)
 - После я изменила параметры файла. yaml-агента и выяснила, какие параметры и как влияют на обучение модели:
 
@@ -50,6 +51,7 @@
 
 После изменения этого параметра 3 -> 8
 ![image](https://user-images.githubusercontent.com/104368430/204717273-b12ad904-6fcf-41af-8dc2-d13894adb437.png)
+![image](https://user-images.githubusercontent.com/104368430/204719305-a83160e3-9d5b-4d5a-921a-b222dbbf0e5b.png)
 ![image](https://user-images.githubusercontent.com/104368430/204717387-b17b2690-81c0-497c-938e-c2ef6d2bb5da.png)
 
 2) learnin_rate - Начальная скорость обучения для градиентного спуска. Обычно это значение следует уменьшить, если тренировка нестабильна, а вознаграждение не увеличивается последовательно. (значения от 1e-5 до 1e-3)
@@ -57,9 +59,16 @@
 3) epsilon - Соответствует допустимому порогу расхождения между старой и новой политиками обучения при обновлении с градиентным спуском. Установка этого значения небольшим приведет к более стабильным обновлениям, но также замедлит процесс обучения. (значения от 0.1 до 0.3)
 
 После изменения этого параметра 0.2 -> 0.3
+![image](https://user-images.githubusercontent.com/104368430/204718574-06d99daa-36c1-42dc-b2ad-cbd962d89d5a.png)
+![image](https://user-images.githubusercontent.com/104368430/204719328-f64fbb1b-72a1-4219-8ad6-0874ac244fa6.png)
+![image](https://user-images.githubusercontent.com/104368430/204718625-78706955-7cad-4afd-a545-716e67ea5bba.png)
 
+4) save_steps - Количество шагов тренажера между моментальными снимками (снапшотами) текущей политики обучения. (значения от 10000 до 100000)
 
-4) save_steps - Количество шагов тренажера между моментальными снимками (снапшотами) текущей политики обучения.
+После изменения этого параметра 20000 -> 50000
+![image](https://user-images.githubusercontent.com/104368430/204719794-8159343e-eaf5-47a9-8a22-f4025dbfed0e.png)
+![image](https://user-images.githubusercontent.com/104368430/204719821-f858bac7-8a68-43ec-a8a1-37a5320c077d.png)
+![image](https://user-images.githubusercontent.com/104368430/204719843-fd8ecd66-fa69-4066-b469-ef35541c40d5.png)
 
 5) beta - Сила регуляризации энтропии. beta-значение должно быть скорректировано таким образом, чтобы энтропия (можно посмотреть в TensorBoard) медленно уменьшалась вместе с увеличением вознаграждения.
 
