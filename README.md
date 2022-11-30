@@ -40,35 +40,22 @@
 ## Задание 1
 ### Измените параметры файла. yaml-агента и определить какие параметры икак влияют на обучение модели.
 Ход работы:
-- Создайть новый пустой 3D проект на Unity. Добавить EmptyObgect и скрипт Perceptron
-![image](https://user-images.githubusercontent.com/104368430/203922880-3d623e7b-1901-4acb-bb48-1aa673750b1f.png)
+- Установить все библиотеки и обучить ML-Agent
+![image](https://user-images.githubusercontent.com/104368430/204712113-6413d3da-17f2-468a-a545-54710509eb94.png)
+- Полуить графики:
+![image](https://user-images.githubusercontent.com/104368430/204712945-3595cd9d-e5ec-4584-98b4-01feb7df6a76.png)
+![image](https://user-images.githubusercontent.com/104368430/204712975-21436605-68e6-4e52-8e9f-a2bb402710da.png)
+- После я изменила параметры файла. yaml-агента и выяснила, какие параметры и как влияют на обучение модели:
 
-- Для каждого Element заполняем поле Input и запускаем проект:
- 1) OR - понадобилось 4 эпохи для обучкеия, начиная с 5ой эпохи он корректно выполняет вычисления
-![image](https://user-images.githubusercontent.com/104368430/203927994-78a46e36-56ec-425f-9bf2-9d95794d0165.png)
-![image](https://user-images.githubusercontent.com/104368430/203928752-9cffd4c9-a06a-40cb-be69-92fbdafe4246.png)
-![image](https://user-images.githubusercontent.com/104368430/203928802-a9f6ba4a-f0d7-4c9d-8e2c-671aa5f257b8.png)
-![image](https://user-images.githubusercontent.com/104368430/203928849-1eb04c07-207d-42a6-b7f8-f27091a1029f.png)
-![image](https://user-images.githubusercontent.com/104368430/203928892-1c3a5eaf-1076-41d5-9fab-ffbe4366a119.png)
+1) num_epochs - Количество проходов через буфер опыта во время градиентного спуска. Если не указано, то по умолчанию будет указано количество эпох, установленное для PPO. Уменьшение этого параметра обеспечит более стабильные обновления за счет более медленного обучения.
 
- 2) AND - понадобилось 5 эпох для обучкеия, начиная с 6ой эпохи он корректно выполняет вычисления
-![image](https://user-images.githubusercontent.com/104368430/203930371-f328d6a4-4764-41e2-9a9b-4b60b9b13bd1.png)
-![image](https://user-images.githubusercontent.com/104368430/203930474-b3ddac6b-64a7-4a07-b321-c02bd4ad4ec8.png)
-![image](https://user-images.githubusercontent.com/104368430/203930508-616aed56-8bfd-4d6e-81b3-1214a9a86fdb.png)
-![image](https://user-images.githubusercontent.com/104368430/203930551-d4c2ca3b-9136-4b2a-9c58-dbf63b26a976.png)
-![image](https://user-images.githubusercontent.com/104368430/203930582-0b6dc10e-42de-4f4f-8197-8b279be182b8.png)
+2) learnin_rate - Начальная скорость обучения для градиентного спуска. Обычно это значение следует уменьшить, если тренировка нестабильна, а вознаграждение не увеличивается последовательно.
 
- 3) NAND - понадобилось 6 эпох для обучкеия, начиная с 7ой эпохи он корректно выполняет вычисления
-![image](https://user-images.githubusercontent.com/104368430/203930915-10d2697f-fbd7-4a27-abe0-4bbd63313d4c.png)
-![image](https://user-images.githubusercontent.com/104368430/203930953-6b274b14-e6ee-4a6c-b7a8-db19420217a9.png)
-![image](https://user-images.githubusercontent.com/104368430/203930971-7552f463-de3f-4218-83c9-98abaf8c8211.png)
-![image](https://user-images.githubusercontent.com/104368430/203930999-83b4c92e-f6bf-4663-9acb-bbb984532d70.png)
-![image](https://user-images.githubusercontent.com/104368430/203931021-55ddcb72-8bc8-412c-baa8-b2e7d05478ee.png)
+3) epsilon - Соответствует допустимому порогу расхождения между старой и новой политиками обучения при обновлении с градиентным спуском. Установка этого значения небольшим приведет к более стабильным обновлениям, но также замедлит процесс обучения.
 
- 4) XOR - даже после прохождения 1000 эпох перцептрон не смог обучиться, он некорректно выполняет вычисления
-![image](https://user-images.githubusercontent.com/104368430/203931521-0d27d4b5-8b24-4daf-b8ec-7be3a4dcc4d9.png)
-![image](https://user-images.githubusercontent.com/104368430/203932711-687b6444-a01c-4018-9926-dd124245792e.png)
-![image](https://user-images.githubusercontent.com/104368430/203932890-46e3304a-a911-4d01-accd-ecbdcabc9bdc.png)
+4) save_steps - Количество шагов тренажера между моментальными снимками (снапшотами) текущей политики обучения.
+
+5) beta - Сила регуляризации энтропии. beta-значение должно быть скорректировано таким образом, чтобы энтропия (можно посмотреть в TensorBoard) медленно уменьшалась вместе с увеличением вознаграждения.
 
 ## Задание 2
 ### Построить графики зависимости количества эпох от ошибки обучения. Указать от чего зависит необходимое количество эпох обучения.
